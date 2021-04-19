@@ -217,7 +217,7 @@ class Ui_MainWindow(object):
 
         self.userCA_i.setText(_translate("MainWindow",potato.qrDecoded[130:134]))
         potato.userCA = self.userCA_i.text()
-        self.imginput.setPixmap(QtGui.QPixmap("tmp.png"))
+        #self.imginput.setPixmap(QtGui.QPixmap("tmp.png"))
         os.remove("tmp.png")
 
     
