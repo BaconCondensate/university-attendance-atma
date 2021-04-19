@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 from qrtools import QR
 from PIL import ImageGrab
-import os
+import os,sys
 import time
 
 __author__ = "BaconCondensate"
@@ -19,7 +19,10 @@ class potato:
     qrDecoded = ""
 
 
-
+def resource_path(relative_path):
+  if hasattr(sys, '_MEIPASS'):
+      return os.path.join(sys._MEIPASS, relative_path)
+  return os.path.join(os.path.abspath('.'), relative_path)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -120,7 +123,7 @@ class Ui_MainWindow(object):
         self.imginput.setFrameShape(QtWidgets.QFrame.Box)
         self.imginput.setFrameShadow(QtWidgets.QFrame.Plain)
         self.imginput.setText("")
-        self.imginput.setPixmap(QtGui.QPixmap("blank.png"))
+        self.imginput.setPixmap(QtGui.QPixmap(resource_path("blank.png")))
         self.imginput.setScaledContents(False)
         self.imginput.setAlignment(QtCore.Qt.AlignCenter)
         self.imginput.setObjectName("imginput")
