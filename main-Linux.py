@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 from qrtools import QR
-import pyscreenshot as ImageGrab
+from PIL import ImageGrab
 import os
 import time
 
@@ -204,8 +204,8 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         
         im = ImageGrab.grab()
-        im.save("tmp.png")
-        my_QR = QR(filename="tmp.png")
+        im.save('tmp.png')
+        my_QR = QR(filename='tmp.png')
         my_QR.decode()
         potato.qrDecoded = my_QR.data
 
@@ -217,7 +217,7 @@ class Ui_MainWindow(object):
 
         self.userCA_i.setText(_translate("MainWindow",potato.qrDecoded[130:134]))
         potato.userCA = self.userCA_i.text()
-        #self.imginput.setPixmap(QtGui.QPixmap("tmp.png"))
+        self.imginput.setPixmap(QtGui.QPixmap("tmp.png"))
         os.remove("tmp.png")
 
     
