@@ -9,8 +9,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
+from qrtools import QR
 import pyscreenshot as ImageGrab
 import os
+import time
 
 class potato:
     userID = ""
@@ -19,6 +21,7 @@ class potato:
     userCA = 0
     userDone = ""
     resp = "https://0.0.0.0/"
+    qrDecoded = ""
 
 
 
@@ -121,13 +124,28 @@ class Ui_MainWindow(object):
         self.link_get.setMaximumSize(QtCore.QSize(16777215, 60))
         self.link_get.setObjectName("link_get")
         self.gridLayout.addWidget(self.link_get, 2, 1, 1, 1)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.qr_get_b = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.qr_get_b.setObjectName("qr_get_b")
+        self.horizontalLayout.addWidget(self.qr_get_b)
+        self.qr_make_b = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.qr_make_b.setObjectName("qr_make_b")
+        self.horizontalLayout.addWidget(self.qr_make_b)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.imginput = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.imginput.setMaximumSize(QtCore.QSize(300, 250))
         self.imginput.setAcceptDrops(True)
         self.imginput.setFrameShape(QtWidgets.QFrame.Box)
         self.imginput.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.imginput.setText("")
+        self.imginput.setPixmap(QtGui.QPixmap("blank.png"))
         self.imginput.setAlignment(QtCore.Qt.AlignCenter)
         self.imginput.setObjectName("imginput")
-        self.gridLayout.addWidget(self.imginput, 0, 1, 1, 1)
+        self.verticalLayout_2.addWidget(self.imginput)
+        self.gridLayout.addLayout(self.verticalLayout_2, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -153,6 +171,9 @@ class Ui_MainWindow(object):
 
         self.submit.clicked.connect(self.submit_att)
 
+        self.qr_get_b.clicked.connect(self.qrgrab)
+        self.qr_get_b.clicked.connect(self.refresh)
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -162,17 +183,14 @@ class Ui_MainWindow(object):
         self.userCA_b.setText(_translate("MainWindow", "Set Class Att"))
         self.userALL.setText(_translate("MainWindow", "Set All"))
         self.submit.setText(_translate("MainWindow", "Submit"))
-        self.imginput.setText(_translate("MainWindow", "Drag/Paste Image here"))
+        self.qr_get_b.setText(_translate("MainWindow", "Get QR"))
+        self.qr_make_b.setText(_translate("MainWindow", "Make QR"))
 
 
 
 
 #USER
     def refresh(self):
-        im = ImageGrab.grab()
-        im.save("tmp.png")
-        self.imginput.setPixmap(QtGui.QPixmap("tmp.png"))
-        os.remove("tmp.png")
         potato.userDone = (f"https://myatma.atmajaya.ac.id/PSIGW/RESTListeningConnector/PSFT_CS/A_SCH_QR_ABS.v1/CRSE_ID/{potato.userCID}/CLASS_NBR/{potato.userCN}/ATTEND_TMPLT_NBR/{potato.userCA}/OPRID/{potato.userID}")
         self.textBrowser.setText(potato.userDone)
 
@@ -194,6 +212,25 @@ class Ui_MainWindow(object):
         print(response.text)
         potato.resp = response.text
         self.link_get.setText(potato.resp)
+    def qrgrab(self):
+        _translate = QtCore.QCoreApplication.translate
+        
+        im = ImageGrab.grab()
+        im.save("tmp.png")
+        my_QR = QR(filename="tmp.png")
+        my_QR.decode()
+        potato.qrDecoded = my_QR.data
+
+        self.userCID_i.setText(_translate("MainWindow",potato.qrDecoded[91:97]))
+        potato.userCID = self.userCID_i.text()
+
+        self.userCN_i.setText(_translate("MainWindow",potato.qrDecoded[108:112]))
+        potato.userCN = self.userCN_i.text()
+
+        self.userCA_i.setText(_translate("MainWindow",potato.qrDecoded[130:134]))
+        potato.userCA = self.userCA_i.text()
+        #self.imginput.setPixmap(QtGui.QPixmap("tmp.png"))
+        os.remove("tmp.png")
 
     
 
