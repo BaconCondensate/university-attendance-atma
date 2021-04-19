@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Condensed Bacon Attendance Tool (Not for redistribution)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="enabled">
@@ -60,13 +60,6 @@
      <property name="spacing">
       <number>15</number>
      </property>
-     <item row="3" column="1">
-      <widget class="QDialogButtonBox" name="buttonBox">
-       <property name="standardButtons">
-        <set>QDialogButtonBox::Close|QDialogButtonBox::Reset</set>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
@@ -176,22 +169,6 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QTextBrowser" name="link_get">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>60</height>
-        </size>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
@@ -203,13 +180,6 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QPushButton" name="qr_make_b">
-           <property name="text">
-            <string>Make QR</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -217,7 +187,7 @@
          <property name="maximumSize">
           <size>
            <width>300</width>
-           <height>250</height>
+           <height>300</height>
           </size>
          </property>
          <property name="acceptDrops">
@@ -233,7 +203,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>rick.png</pixmap>
+          <pixmap>blank.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>false</bool>
@@ -244,6 +214,22 @@
         </widget>
        </item>
       </layout>
+     </item>
+     <item row="2" column="1">
+      <widget class="QTextBrowser" name="link_get">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
