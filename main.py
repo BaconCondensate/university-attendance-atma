@@ -1,18 +1,13 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'mainui.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 from qrtools import QR
 import pyscreenshot as ImageGrab
 import os
 import time
+
+__author__ = "BaconCondensate"
+__email__ = "-"
+__version__ = "0.1"
 
 class potato:
     userID = ""
@@ -131,9 +126,7 @@ class Ui_MainWindow(object):
         self.qr_get_b = QtWidgets.QPushButton(self.gridLayoutWidget)
         self.qr_get_b.setObjectName("qr_get_b")
         self.horizontalLayout.addWidget(self.qr_get_b)
-        self.qr_make_b = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.qr_make_b.setObjectName("qr_make_b")
-        self.horizontalLayout.addWidget(self.qr_make_b)
+
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.imginput = QtWidgets.QLabel(self.gridLayoutWidget)
         self.imginput.setMaximumSize(QtCore.QSize(300, 250))
@@ -184,7 +177,6 @@ class Ui_MainWindow(object):
         self.userALL.setText(_translate("MainWindow", "Set All"))
         self.submit.setText(_translate("MainWindow", "Submit"))
         self.qr_get_b.setText(_translate("MainWindow", "Get QR"))
-        self.qr_make_b.setText(_translate("MainWindow", "Make QR"))
 
 
 
