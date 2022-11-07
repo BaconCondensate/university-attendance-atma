@@ -168,7 +168,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Condensed Bacon Attendance Tool (Not for redistribution)"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Condensed Bacon Attendance Tool"))
         self.userID_b.setText(_translate("MainWindow", "Set UserID"))
         self.userCN_b.setText(_translate("MainWindow", "Set Class #"))
         self.userCID_b.setText(_translate("MainWindow", "Set Class ID"))
@@ -182,7 +182,7 @@ class Ui_MainWindow(object):
 
 #USER
     def refresh(self):
-        potato.userDone = (f"https://myatma.atmajaya.ac.id/PSIGW/RESTListeningConnector/PSFT_CS/A_SCH_QR_ABS.v1/CRSE_ID/{potato.userCID}/CLASS_NBR/{potato.userCN}/ATTEND_TMPLT_NBR/{potato.userCA}/OPRID/{potato.userID}")
+        potato.userDone = (f"https://myatma.atmajaya.ac.id/PSIGW/RESTListeningConnector/PSFT_CS/A_SCH_QR_ABS_NEW.v1/CRSE_ID/{potato.userCID}/CLASS_NBR/{potato.userCN}/ATTEND_TMPLT_NBR/{potato.userCA}/OPRID/{potato.userID}")
         self.textBrowser.setText(potato.userDone)
 
     def set_userID(self):
